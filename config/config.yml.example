@@ -1,0 +1,17 @@
+database:
+  driver: mysql
+  username: db_username
+  password: db_password
+  host: db_host
+  port: db_port
+  dbname: db_name
+  charset: db_charset
+  parseTime: parse_time
+  loc: time_localization
+
+jwt:
+  secret: your_secret_key
+
+midtrans:
+  server_key: your_server_key
+  client_key: your_client_key

@@ -1,0 +1,55 @@
+myproject/
+|-- cmd/
+|   |-- myapp/
+|   |   |-- main.go
+|
+|-- app/
+|   |-- controller/
+|   |   |-- user_controller.go
+|   |   |-- campaign_controller.go
+|   |   |-- transaction_controller.go
+|   |
+|   |-- model/
+|   |   |-- user/
+|   |   |   |-- user_model.go
+|   |   |   |-- user_repository.go
+|   |   |   |-- user_formatter.go
+|   |   |   |-- user_input.go
+|   |   |
+|   |   |-- campaign/
+|   |   |   |-- campaign_model.go
+|   |   |   |-- campaign_repository.go
+|   |   |   |-- campaign_formatter.go
+|   |   |   |-- campaign_input.go
+|   |   |
+|   |   |-- transaction/
+|   |   |   |-- transaction_model.go
+|   |   |   |-- transaction_repository.go
+|   |   |   |-- transaction_formatter.go
+|   |   |   |-- transaction_input.go
+|   |
+|   |-- service/
+|   |   |-- user_service.go
+|   |   |-- campaign_service.go
+|   |   |-- transaction_service.go
+|
+|-- config/
+|   |-- config.go
+|   |-- config.yml
+|
+|-- infrastructure/
+|   |-- conn/
+|   |   |-- db.go
+|   |
+|   |-- middleware/
+|   |   |-- auth.go
+|   |
+|   |-- registry/
+|   |   |-- controller_registry.go
+|   |   |-- service_registry.go
+|   |
+|   |-- router/
+|       |-- router.go
+|       |-- routers.go
+|
+|-- main.go
