@@ -9,3 +9,6 @@ images/campaign-images/*.jpeg
 
 ### Config Files ###
 /config/config.yml
+
+### Misc. Files ###
+dirtree.txt

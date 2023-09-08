@@ -12,6 +12,77 @@ This API is the outcome of my progress of learning via an online class, called <
 - [x] MidTrans payment gateway integration
 - [ ] Properly working payment gateway
 
+## Project Directory Map
+```
+api-go/
+|-- auth/
+|   |-- service.go
+|
+|-- campaign/
+|   |-- entity.go
+|   |-- formatter.go
+|   |-- input.go
+|   |-- repository.go
+|   |-- service.go
+|
+|-- config/
+|   |-- config.go
+|   |-- config.yml
+|   |-- config.yml.example  --> *rename this to `config.yml` and change the values according to your own.
+|
+|-- database/
+|   |-- db.go
+|
+|-- docker/ --> *soon will be updated
+|
+|-- handler/
+|   |-- campaign.go
+|   |-- transaction.go
+|   |-- user.go
+|
+|-- helper/
+|   |-- helper.go
+|
+|-- images/
+|   |-- campaign-images/
+|   |   |-- .gitkeep    --> *not imported but the directory is a must
+|   |
+|   |-- notes.txt   --> *complete explanation here
+|
+|-- middleware/
+|   |-- middleware.go
+|
+|-- payment/
+|   |-- entity.go
+|   |-- service.go
+|
+|-- routes/
+|   |-- routes.go
+|
+|-- transaction/
+|   |-- entity.go
+|   |-- formatter.go
+|   |-- input.go
+|   |-- repository.go
+|   |-- service.go
+|
+|-- user/
+|   |-- entity.go
+|   |-- formatter.go
+|   |-- input.go
+|   |-- repository.go
+|   |-- service.go
+|
+|-- .gitignore
+|
+|-- go.mod
+|
+|-- go.sum
+|
+|-- main.go
+|
+|-- README.md   <-- You are here
+```
 ## Changelog
 This project is the same project as <a href="github.com/vctrthe/go-api"> this,</a> but due to continuous problems and errors, I decided to create a new repository that is working.
 
