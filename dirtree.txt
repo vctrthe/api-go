@@ -1,55 +1,70 @@
-myproject/
-|-- cmd/
-|   |-- myapp/
-|   |   |-- main.go
+api-go/
+|-- auth/
+|   |-- service.go
 |
-|-- app/
-|   |-- controller/
-|   |   |-- user_controller.go
-|   |   |-- campaign_controller.go
-|   |   |-- transaction_controller.go
-|   |
-|   |-- model/
-|   |   |-- user/
-|   |   |   |-- user_model.go
-|   |   |   |-- user_repository.go
-|   |   |   |-- user_formatter.go
-|   |   |   |-- user_input.go
-|   |   |
-|   |   |-- campaign/
-|   |   |   |-- campaign_model.go
-|   |   |   |-- campaign_repository.go
-|   |   |   |-- campaign_formatter.go
-|   |   |   |-- campaign_input.go
-|   |   |
-|   |   |-- transaction/
-|   |   |   |-- transaction_model.go
-|   |   |   |-- transaction_repository.go
-|   |   |   |-- transaction_formatter.go
-|   |   |   |-- transaction_input.go
-|   |
-|   |-- service/
-|   |   |-- user_service.go
-|   |   |-- campaign_service.go
-|   |   |-- transaction_service.go
+|-- campaign/
+|   |-- entity.go
+|   |-- formatter.go
+|   |-- input.go
+|   |-- repository.go
+|   |-- service.go
 |
 |-- config/
 |   |-- config.go
 |   |-- config.yml
+|   |-- config.yml.example  --> *rename this to `config.yml` and change the values according to your own.
 |
-|-- infrastructure/
-|   |-- conn/
-|   |   |-- db.go
+|-- database/
+|   |-- db.go
+|
+|-- docker/ --> *soon will be updated
+|
+|-- handler/
+|   |-- campaign.go
+|   |-- transaction.go
+|   |-- user.go
+|
+|-- helper/
+|   |-- helper.go
+|
+|-- images/
+|   |-- campaign-images/
+|   |   |-- .gitkeep    --> *not imported but the directory is a must
 |   |
-|   |-- middleware/
-|   |   |-- auth.go
-|   |
-|   |-- registry/
-|   |   |-- controller_registry.go
-|   |   |-- service_registry.go
-|   |
-|   |-- router/
-|       |-- router.go
-|       |-- routers.go
+|   |-- notes.txt   --> *complete explanation here
+|
+|-- middleware/
+|   |-- middleware.go
+|
+|-- payment/
+|   |-- entity.go
+|   |-- service.go
+|
+|-- routes/
+|   |-- routes.go
+|
+|-- transaction/
+|   |-- entity.go
+|   |-- formatter.go
+|   |-- input.go
+|   |-- repository.go
+|   |-- service.go
+|
+|-- user/
+|   |-- entity.go
+|   |-- formatter.go
+|   |-- input.go
+|   |-- repository.go
+|   |-- service.go
+|
+|-- .gitignore
+|
+|-- dirtree.txt
+|
+|-- go.mod
+|
+|-- go.sum
 |
 |-- main.go
+|
+|-- README.md
