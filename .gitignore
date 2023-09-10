@@ -11,3 +11,4 @@ images/campaign-images/*.jpeg
 /config/config.yml
 
 ### Misc. Files ###
+docker-compose.yml
