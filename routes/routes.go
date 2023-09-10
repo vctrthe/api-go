@@ -7,12 +7,13 @@ import (
 	"github.com/vctrthe/api-go/campaign"
 	"github.com/vctrthe/api-go/handler"
 	"github.com/vctrthe/api-go/middleware"
+	"github.com/vctrthe/api-go/payment"
 	"github.com/vctrthe/api-go/transaction"
 	"github.com/vctrthe/api-go/user"
 )
 
 // RegisterRoutes registers API routes and handlers
-func RegisterRoutes(router *gin.Engine, authService auth.Service, userService user.Service, campaignService campaign.Service, transactionService transaction.Service) {
+func RegisterRoutes(router *gin.Engine, authService auth.Service, userService user.Service, campaignService campaign.Service, transactionService transaction.Service, paymentService payment.Service) {
 	api := router.Group("/api/v1")
 
 	// User-related endpoints
@@ -35,4 +36,5 @@ func RegisterRoutes(router *gin.Engine, authService auth.Service, userService us
 	api.GET("/campaigns/:id/transactions", middleware.AuthMiddleware(authService, userService), transactionHandler.GetCampaignTransactions)
 	api.GET("/transactions", middleware.AuthMiddleware(authService, userService), transactionHandler.GetUserTransaction)
 	api.POST("/transactions", middleware.AuthMiddleware(authService, userService), transactionHandler.CreateTransaction)
+	api.POST("/transactions/notification", transactionHandler.GetNotification)
 }

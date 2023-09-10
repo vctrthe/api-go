@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/vctrthe/api-go/auth"
 	"github.com/vctrthe/api-go/campaign"
@@ -53,8 +54,9 @@ func main() {
 
 	// API Endpoint Routes
 	router := gin.Default()
+	router.Use(cors.Default())
 	router.Static("/images", "./images")
 
-	routes.RegisterRoutes(router, authService, userService, campaignService, transactionService)
+	routes.RegisterRoutes(router, authService, userService, campaignService, transactionService, paymentService)
 	router.Run()
 }

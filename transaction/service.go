@@ -2,6 +2,7 @@ package transaction
 
 import (
 	"errors"
+	"strconv"
 
 	"github.com/vctrthe/api-go/campaign"
 	"github.com/vctrthe/api-go/payment"
@@ -11,6 +12,7 @@ type Service interface {
 	GetTransByCampID(input GetTransByCampaignInput) ([]Transaction, error)
 	GetTransByUserID(userID int) ([]Transaction, error)
 	CreateTransaction(input CreateTransactionInput) (Transaction, error)
+	ProcessPayment(input TransactionNotificationInput) error
 }
 
 type service struct {
@@ -77,4 +79,41 @@ func (s *service) CreateTransaction(input CreateTransactionInput) (Transaction, 
 	}
 
 	return newTransaction, nil
+}
+
+func (s *service) ProcessPayment(input TransactionNotificationInput) error {
+	transactionID, _ := strconv.Atoi(input.OrderID)
+	transaction, err := s.repository.GetByID(transactionID)
+	if err != nil {
+		return err
+	}
+
+	if input.PaymentType == "credit_card" && input.TransactionStatus == "capture" && input.FraudStatus == "accept" {
+		transaction.Status = "PAID"
+	} else if input.TransactionStatus == "settlement" {
+		transaction.Status = "PAID"
+	} else if input.TransactionStatus == "deny" || input.TransactionStatus == "expire" || input.TransactionStatus == "cancel" {
+		transaction.Status = "CANCELLED"
+	}
+
+	updatedTransaction, err := s.repository.Update(transaction)
+	if err != nil {
+		return err
+	}
+
+	campaign, err := s.campaignRepository.FindByID(updatedTransaction.CampaignID)
+	if err != nil {
+		return err
+	}
+
+	if updatedTransaction.Status == "PAID" {
+		campaign.BackerCount = campaign.BackerCount + 1
+		campaign.CurrentAmount = campaign.CurrentAmount + updatedTransaction.Amount
+
+		_, err := s.campaignRepository.Update(campaign)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
