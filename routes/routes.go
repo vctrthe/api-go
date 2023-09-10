@@ -22,6 +22,7 @@ func RegisterRoutes(router *gin.Engine, authService auth.Service, userService us
 	api.POST("/sessions", userHandler.LoginUser)
 	api.POST("/email_check", userHandler.CheckEmail)
 	api.POST("/avatars", middleware.AuthMiddleware(authService, userService), userHandler.AvatarUpload)
+	api.GET("/users/fetch", middleware.AuthMiddleware(authService, userService), userHandler.FetchUser)
 
 	// Campaign-related endpoints
 	campaignHandler := handler.NewCampaignHandler(campaignService)
