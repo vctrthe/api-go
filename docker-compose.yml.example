@@ -1,0 +1,49 @@
+version: '3'
+services:
+    api-go:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        container_name: "container-name"
+        ports:
+            - "8080:8080"
+        volumes:
+            - ./api-go:/app
+            - ./config:/app/config
+        networks:
+            - network_name
+        depends_on:
+            - db
+            - pma
+
+    db:
+        image: mysql:latest
+        environment:
+            MYSQL_USER: DBUSER
+            MYSQL_PASSWORD: DBPASSWORD
+            MYSQL_ROOT_PASSWORD: DBROOTPASSWORD
+            MYSQL_DATABASE: DBNAME
+        volumes:
+            - mysql_data:/var/lib/mysql
+        networks:
+            - network_name
+
+    pma:
+        image: phpmyadmin/phpmyadmin:latest
+        environment:
+            PMA_HOST: db
+            PMA_USER: DBUSER
+            PMA_PASSWORD: DBPASSWORD
+        ports:
+            - "8081:80"
+        networks:
+            - network_name
+        depends_on:
+            - db
+
+volumes:
+    mysql_data:
+
+networks:
+    network_name:
+        driver: bridge
